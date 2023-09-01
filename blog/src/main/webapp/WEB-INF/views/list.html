@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>My Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    #more {display: none;}
+  </style>
+</head>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+  <!-- Header -->
+  <header class="w3-container w3-center w3-padding-32">
+    <h1><b>MY BLOG</b></h1>
+    <p>Welcome to the blog of <span class="w3-tag">Nhung274</span></p>
+  </header>
+  <div class="w3-col m8 s12" style="margin: 16px!important;">
+    <p><a href="/add"><button class="w3-button w3-padding-large w3-white w3-border"><b>Create a blog</b></button></a> </p>
+  </div>
+  <!-- Grid -->
+  <div class="w3-row">
+
+      <!-- Blog entry -->
+
+    <th:block th:each="b:${blogs}">
+      <div class="w3-card-4 w3-margin w3-white">
+<!--        <th:block th:if="${b.image}!=null">-->
+<!--          <img th:src="@{|/upload/${b.image}|}" alt="image" style="width:100%">-->
+<!--        </th:block>-->
+        <div class="w3-container">
+          <h3><b th:text="${b.title}"></b></h3>
+          <span class="w3-opacity" th:text="${b.creationDate}"></span>
+        </div>
+
+        <div class="w3-container">
+<!--          <p th:text="${b.content}"></p>-->
+          <div class="w3-row">
+            <div class="w3-col m8 s12">
+              <a th:href="@{|/detail/${b.id}|}"><button class="w3-button w3-padding-large w3-white w3-border" ><b>READ MORE »</b></button></a>
+              <a th:href="@{|/edit/${b.id}|}"><button class="w3-button w3-padding-large w3-white w3-border"><b>Edit</b></button></a>
+              <a th:href="@{|/delete/${b.id}|}"><button class="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </th:block>
+      <!-- END BLOG ENTRIES -->
+    </div>
+
+
+
+    <!-- END GRID -->
+  </div><br>
+
+  <!-- END w3-content -->
+
+
+</body>
+</html>
